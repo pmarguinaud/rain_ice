@@ -393,8 +393,6 @@ ENDIF
 
 CALL CLOSE_LOAD
 
-#undef SAVEA
-
 CONTAINS
 
 #include "contains.h"
