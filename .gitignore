@@ -2,4 +2,6 @@
 *.a
 *.x
 *.mod
-guyane
+*.IN
+*.OUT
+*.COUNT
