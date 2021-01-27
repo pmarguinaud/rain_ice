@@ -201,24 +201,27 @@ KLON = KLON1; ICOUNT = ICOUNT1
 
 KIT = KLON
 
+
+!$OMP PARALLEL DO PRIVATE (IBL)
 DO IBL = 1, ICOUNT
 
-CALL RAIN_ICE ( KIT, KJT, KKT, KSIZE_ALL (IBL),                         &
-                OSEDIC, OCND2, HSEDIM, HSUBG_AUCV_RC, OWARM,KKA,KKU,KKL,&
-                PTSTEP, KRR, LDMICRO_ALL (:,:,:,IBL), PEXN_ALL (:,:,:,IBL),     &
-                PDZZ_ALL (:,:,:,IBL), PRHODJ_ALL (:,:,:,IBL), PRHODREF_ALL (:,:,:,IBL), &
-                PEXNREF_ALL (:,:,:,IBL), PPABST_ALL (:,:,:,IBL), PCIT_ALL (:,:,:,IBL), &
-                PCLDFR_ALL (:,:,:,IBL), PTHT_ALL (:,:,:,IBL), PRVT_ALL (:,:,:,IBL), &
-                PRCT_ALL (:,:,:,IBL), PRRT_ALL (:,:,:,IBL), PRIT_ALL (:,:,:,IBL), &
-                PRST_ALL (:,:,:,IBL), PRGT_ALL (:,:,:,IBL), PTHS_ALL (:,:,:,IBL), &
-                PRVS_ALL (:,:,:,IBL), PRCS_ALL (:,:,:,IBL), PRRS_ALL (:,:,:,IBL), &
-                PRIS_ALL (:,:,:,IBL), PRSS_ALL (:,:,:,IBL), PRGS_ALL (:,:,:,IBL), &
-                PINPRC_ALL (:,:,IBL), PINPRR_ALL (:,:,IBL), PEVAP3D_ALL (:,:,:,IBL), &
-                PINPRS_ALL (:,:,IBL), PINPRG_ALL (:,:,IBL), PSIGS_ALL (:,:,:,IBL), &
-                PSEA_ALL (:,:,IBL), PTOWN_ALL (:,:,IBL), PRHT_ALL (:,:,:,IBL), &
-                PRHS_ALL (:,:,:,IBL), PINPRH_ALL (:,:,IBL), PFPR_ALL (:,:,:,:,IBL))
+  CALL RAIN_ICE ( KIT, KJT, KKT, KSIZE_ALL (IBL),                         &
+                  OSEDIC, OCND2, HSEDIM, HSUBG_AUCV_RC, OWARM,KKA,KKU,KKL,&
+                  PTSTEP, KRR, LDMICRO_ALL (:,:,:,IBL), PEXN_ALL (:,:,:,IBL),     &
+                  PDZZ_ALL (:,:,:,IBL), PRHODJ_ALL (:,:,:,IBL), PRHODREF_ALL (:,:,:,IBL), &
+                  PEXNREF_ALL (:,:,:,IBL), PPABST_ALL (:,:,:,IBL), PCIT_ALL (:,:,:,IBL), &
+                  PCLDFR_ALL (:,:,:,IBL), PTHT_ALL (:,:,:,IBL), PRVT_ALL (:,:,:,IBL), &
+                  PRCT_ALL (:,:,:,IBL), PRRT_ALL (:,:,:,IBL), PRIT_ALL (:,:,:,IBL), &
+                  PRST_ALL (:,:,:,IBL), PRGT_ALL (:,:,:,IBL), PTHS_ALL (:,:,:,IBL), &
+                  PRVS_ALL (:,:,:,IBL), PRCS_ALL (:,:,:,IBL), PRRS_ALL (:,:,:,IBL), &
+                  PRIS_ALL (:,:,:,IBL), PRSS_ALL (:,:,:,IBL), PRGS_ALL (:,:,:,IBL), &
+                  PINPRC_ALL (:,:,IBL), PINPRR_ALL (:,:,IBL), PEVAP3D_ALL (:,:,:,IBL), &
+                  PINPRS_ALL (:,:,IBL), PINPRG_ALL (:,:,IBL), PSIGS_ALL (:,:,:,IBL), &
+                  PSEA_ALL (:,:,IBL), PTOWN_ALL (:,:,IBL), PRHT_ALL (:,:,:,IBL), &
+                  PRHS_ALL (:,:,:,IBL), PINPRH_ALL (:,:,IBL), PFPR_ALL (:,:,:,:,IBL))
 
 ENDDO
+!$OMP END PARALLEL DO
 
 
 IF (LLDIFF .AND. ICOUNT0 == ICOUNT1 .AND. KLON0 == KLON1) THEN
